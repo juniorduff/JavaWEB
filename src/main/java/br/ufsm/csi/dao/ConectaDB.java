@@ -2,35 +2,26 @@ package br.ufsm.csi.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
+
 
 public class ConectaDB {
 
-    public static  void main(String args[]){
+    private static final String DRIVER = "org.postgresql.Driver";
+    private static final String URL = "jdbc:postgresql://localhost:5432/CODVID19";
+    private static final String USER = "postgres";
+    private static final String SENHA = "postgres";
+
+    public Connection getConexao() {
+        Connection conn = null;
 
         try {
-            Class.forName("org.postgresql.Driver");
-            Connection conn =
-                    DriverManager.getConnection("jdbc:postgresql://localhost:5432/CODVID19",
-                            "postgres","postgres");
-            System.out.println("conexao realizada com sucesso");
+            Class.forName(DRIVER);
+            conn = DriverManager.getConnection(URL,USER,SENHA);
 
-            // Instanciando o objeto statement (stmt)
-            Statement stmt = conn.createStatement();
-       ResultSet rs = stmt.executeQuery("select * from usuario");
-
-        while (rs.next()){
-            System.out.println("id: "+ rs.getInt("id_usuario"));
-            System.out.println("nome: "+rs.getString("nome"));
-            System.out.println("email: "+rs.getString("email"));
-        }
-
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-
         }
+        return conn;
 
     }
-
 }

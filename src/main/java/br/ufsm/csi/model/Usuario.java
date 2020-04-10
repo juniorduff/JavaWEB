@@ -8,10 +8,22 @@ public class Usuario {
     private String senha;
     private Date data_cadastro;
     private boolean ativo;
+    private Permissao permissao;
+
+
 
     public Usuario() {
     }
-
+    public Usuario(int id) {
+        this.id = id;
+    }
+    public Usuario(String nome, String email, String senha, boolean ativo, Permissao permissao) {
+        this.nome = nome;
+        this.email = email;
+        this.senha = senha;
+        this.ativo = ativo;
+        this.permissao = permissao;
+    }
     public int getId() {
         return id;
     }
@@ -56,7 +68,9 @@ public class Usuario {
         return ativo;
     }
 
-    public void setAtivo(boolean ativo) {
-        this.ativo = ativo;
-    }
+    public void setAtivo(boolean ativo) {      this.ativo = ativo;    }
+    public Permissao getPermissao() {       return permissao;    }
+
+    public void setPermissao(Permissao permissao) {       this.permissao = permissao;    }
+
 }
